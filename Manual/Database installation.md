@@ -1,13 +1,13 @@
 # SNOW Database Prerequisites #
 
-## Hardware and OS - Before installation day ##
+## Hardware and OS Requirements ##
 
 * 1 server (or more, depending on HA scenario) of RHEL 8.x or later.
 * The server should have a dedicated volume of at least 500GB ( or more, depending on organization requirements) 
 * A glide base file (glide-base-VER.tar.gz)
 * (For MariaDB installation - a mariadb custom installation package and a custom my.cnf file
 
-## Installation day ##
+## Deployment Steps ##
 
 ### Step 1 - glide partition: ###
 
@@ -94,6 +94,7 @@ sudo systemctl status mysql
 ~~~
 
 6. Install mysql client if needed, and then login using root and add a username with the below command
+   make sure to save this username, you will need it for the application deployment later on.
 ~~~sh
 yum install mysql
 ~~~
