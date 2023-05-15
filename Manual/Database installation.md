@@ -2,12 +2,9 @@
 
 ## Hardware and OS - Before installation day ##
 
-1 server (or more, depending on HA scenario) of RHEL 8.x or later.
-The server should have a dedicated volume of at least 500GB ( or more, depending on organization requirements) 
-The following files:
-A glide base file (glide-base-VER.tar.gz)
-A glide orbit package (glide-tokyo-ver.tar.gz)
-A java JDK installation file.
+* 1 server (or more, depending on HA scenario) of RHEL 8.x or later.
+* The server should have a dedicated volume of at least 500GB ( or more, depending on organization requirements) 
+* A glide base file (glide-base-VER.tar.gz)
 
 ## Installation day ##
 
@@ -23,19 +20,23 @@ sudo vgcreate snow_vg  /dev/sdb
 sudo lvcreate -L <Size-of-LV> -n snow_lv   snow_vg
 ```
 
+2.Format it with the XFS filesystem and mount it to /glide
+```sh
+sudo mkfs.xfs /dev/snow_vg/snow_lv
+sudo mkdir /glide
+sudo mount /dev/snow_vg/snow_lv /glide
+df -Th /glide
+```
 
-2.  Format it with the XFS filesystem and mount it to /glide
-$ sudo mkfs.xfs /dev/snow_vg/snow_lv
-$ sudo mkdir /glide
-$ sudo mount /dev/snow_vg/snow_lv /glide
-$ df -Th /glide
+### Step 2. OS Settings ###
 
-Step 2. OS Settings
-
-Make sure that SELinux and firewalld is disabled: setenforce 0
-$ sudo mkfs.xfs /dev/snow_vg/snow_lv
-$ sudo mkdir /glide
-$ sudo mount /dev/snow_vg/snow_lv /glide
-$ df -Th /glide sed -i 's/enforcing/disabled/' /etc/config/selinux systemctl systemctl stop firewal disable firewalld   
+1. Make sure that SELinux and firewalld is disabled:
+```sh
+setenforce 0
+sed -i 's/enforcing/disabled/' /etc/selinux/config
+systemctl systemctl stop firewal
+systemctl disable firewalld
+```
+2. 
 
 
