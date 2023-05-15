@@ -15,7 +15,7 @@ will do so using LVM to create a logical volume.
 
 1. First we'll create the LVM partition
 ```sh
-sudo pvcreate /dev/sdb
+sudo pvcreate /dev/sdb -ffy
 sudo vgcreate snow_vg  /dev/sdb
 sudo lvcreate -L <Size-of-LV> -n snow_lv   snow_vg
 ```
@@ -37,6 +37,23 @@ sed -i 's/enforcing/disabled/' /etc/selinux/config
 systemctl systemctl stop firewal
 systemctl disable firewalld
 ```
-2. 
+2. Set our timezone to UTC
+```sh
+sudo timedatectl set-timezone UTC
+```
+3. Disable THP 
+4. Install the following RPM packages:
+```sh
+sudo yum install libaio
+sudo yum install glibc
+sudo yum install perl 
+```
+5. Kernel settings 
+```sh
+echo "* soft nproc 10240" | sudo tee -a /etc/security/limits.conf
+echo "vm.swappiness=1" | sudo tee -a /etc/sysctl.conf
+```
+
+
 
 
