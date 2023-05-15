@@ -96,7 +96,7 @@ sudo systemctl status mysql
 6. Install mysql client if needed, and then login using root and add a username with the below command
 ~~~sh
 yum install mysql
-~~~sh
+~~~
 ~~~sql
 mysql > GRANT ALL PRIVILEGES ON *.* TO <username>@'<source app IP>' IDENTIFIED BY '<some password>';
 mysql> flush privileges;
