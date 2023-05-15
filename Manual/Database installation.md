@@ -84,9 +84,21 @@ chown -R mysql data temp
 ln -s /glide/bin/mysql.server-glide.sh /etc/init.d/mysql
 ln -s /etc/init.d/mysql /etc/rc3.d/S99mysql
 ln -s /etc/init.d/mysql /etc/rc3.d/K01mysql
-ln -s /etc/init.d/mysql /etc/rc5.d/S99mysql
-ln -s /etc/init.d/mysql /etc/rc5.d/K01mysql
 ~~~
 
-5.
+5. Start the service, make sure its running and then enable it for system startup
+~~~sh
+sudo /etc/init.d/mysql start
+sudo systemctl status mysql
+^status^enable
+~~~
+
+6. Install mysql client if needed, and then login using root and add a username with the below command
+~~~sh
+yum install mysql
+~~~sh
+~~~sql
+mysql > GRANT ALL PRIVILEGES ON *.* TO <username>@'<source app IP>' IDENTIFIED BY '<some password>';
+mysql> flush privileges;
+~~~
 
