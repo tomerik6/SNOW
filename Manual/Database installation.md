@@ -79,7 +79,7 @@ cd mysql
 mkdir temp
 chown -HR mysql:mysql /glide/mysql
 ./scripts/mysql_install_db --user=mysql
-chown -R root
+chown -R root .
 chown -R mysql data temp
 ln -s /glide/bin/mysql.server-glide.sh /etc/init.d/mysql
 ln -s /etc/init.d/mysql /etc/rc3.d/S99mysql
