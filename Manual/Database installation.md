@@ -5,6 +5,7 @@
 * 1 server (or more, depending on HA scenario) of RHEL 8.x or later.
 * The server should have a dedicated volume of at least 500GB ( or more, depending on organization requirements) 
 * A glide base file (glide-base-VER.tar.gz)
+* (For MariaDB installation - a mariadb custom installation package and a custom my.cnf file
 
 ## Installation day ##
 
@@ -54,6 +55,38 @@ echo "* soft nproc 10240" | sudo tee -a /etc/security/limits.conf
 echo "vm.swappiness=1" | sudo tee -a /etc/sysctl.conf
 ```
 
+### Step 3. Deploy the database (MariaDB) ###
+1. Extract the base file
+```sh
+tar zxf glide-base-<date>.tar.gz --exclude='logs' --exclude='nodes' --exclude='temp' -C /glide
+```
+2. Add service users and groups
+```sh
+groupadd mysql
+useradd mysql -g mysql
+```
+3.Extract the custom cnf file (Edit the content of innodb_buffer_pool and innodb_log_size to 70% of your servers memory)
+~~~sh
+tar zxvf ServiceNow_mariadb10.4_my.cnf-20220429-512GB.tar.gz -C .
+cp ServiceNow_mariadb10.4_my.cnf-20220429-512GB.tar.gz /etc/my.cnf
+~~~
+4. Deploy the DB
+~~~sh
+cd /glide
+tar -zxvpf mariadb-10.11.2-linux-systemd-x86_64.tar.gz
+ln -s mariadb-10.11.2-linux-systemd-x86_6 mysql
+cd mysql
+mkdir temp
+chown -HR mysql:mysql /glide/mysql
+./scripts/mysql_install_db --user=mysql
+chown -R root
+chown -R mysql data temp
+ln -s /glide/bin/mysql.server-glide.sh /etc/init.d/mysql
+ln -s /etc/init.d/mysql /etc/rc3.d/S99mysql
+ln -s /etc/init.d/mysql /etc/rc3.d/K01mysql
+ln -s /etc/init.d/mysql /etc/rc5.d/S99mysql
+ln -s /etc/init.d/mysql /etc/rc5.d/K01mysql
+~~~
 
-
+5.
 
