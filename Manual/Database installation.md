@@ -1,4 +1,4 @@
-# SNOW Database Deployment Guide#
+# SNOW Database Deployment Guide #
 
 ## Hardware and OS Requirements ##
 
@@ -35,7 +35,7 @@ df -Th /glide
 ```sh
 setenforce 0
 sed -i 's/enforcing/disabled/' /etc/selinux/config
-systemctl systemctl stop firewal
+systemctl stop firewalld
 systemctl disable firewalld
 ```
 2. Set our timezone to UTC
