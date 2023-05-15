@@ -1,4 +1,4 @@
-# SNOW Database Prerequisites #
+# SNOW Database Deployment Guide#
 
 ## Hardware and OS Requirements ##
 
