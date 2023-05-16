@@ -58,7 +58,7 @@ echo "vm.swappiness=1" | sudo tee -a /etc/sysctl.conf
 ### Step 3. Deploy the database (MariaDB) ###
 1. Extract the base file
 ```sh
-tar zxf ServiceNow_mariadb10.4_my.cnf-20220429-512GB.tar.gz --exclude='logs' --exclude='nodes' --exclude='temp' -C /glide
+tar zxf glide-base-20220708.tar.gz --exclude='logs' --exclude='nodes' --exclude='temp' -C /glide
 ```
 2. Add service users and groups
 ```sh
