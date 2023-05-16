@@ -26,6 +26,7 @@ sudo lvcreate -L <Size-of-LV> -n snow_lv   snow_vg
 sudo mkfs.xfs /dev/snow_vg/snow_lv
 sudo mkdir /glide
 sudo mount /dev/snow_vg/snow_lv /glide
+
 df -Th /glide
 ```
 
