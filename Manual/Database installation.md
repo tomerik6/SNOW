@@ -45,9 +45,9 @@ sudo timedatectl set-timezone UTC
 3. Disable THP 
 4. Install the following RPM packages:
 ```sh
-sudo yum install libaio
-sudo yum install glibc
-sudo yum install perl 
+sudo yum -y install libaio
+sudo yum -y install glibc
+sudo yum -y install perl 
 ```
 5. Kernel settings 
 ```sh
@@ -96,7 +96,7 @@ sudo systemctl status mysql
 6. Install mysql client if needed, and then login using root and add a username with the below command
    make sure to save this username, you will need it for the application deployment later on.
 ~~~sh
-yum install mysql
+yum -y install mysql
 ~~~
 ~~~sql
 mysql > GRANT ALL PRIVILEGES ON *.* TO <username>@'<source app IP>' IDENTIFIED BY '<some password>';
