@@ -84,7 +84,43 @@ WantedBy=multi-user.target
 systemctl daemon-reload
 systemctl enable snc_<nodename>.service
 ```
-*Reboot the server and ensure the service starts up.
+**Reboot the server and ensure the service starts up**.
 
-7.
-
+>Note: This step onwards requires a database deployment, see [Database Deployment](Database installation.md)
+7. Configure database connection and properties:
+ ```sh vi /glide/nodes/<NodeName>_<NodePort>/conf/glide.db.properties ```
+ > For MariaDB Deployments
+ ```
+glide.db.name = <DatabaseName>
+glide.db.rdbms = mysql
+glide.db.url = jdbc:mysql://<Remote DB host>:3306/
+glide.db.user = <username>
+glide.db.password = <password>
+```
+> For oracle deployments
+```
+glide.db.name = <DatabaseName>
+glide.db.rdbms = oracle
+glide.db.url = jdbc:oracle:thin:@<DB hostname>:1521:<SID>
+glide.db.user = <username>
+glide.db.password = <password>
+glide.db.truncate_utf8 = true
+```
+8.Configure other settings
+```sh vi /glide/nodes/<Nodename>/conf/glide.properties```
+```
+glide.proxy.host = https://example.service-now.com (should be set to your URL)
+glide.proxy.path = /
+glide.servlet.port = <NodePort>
+glide.cluster.node_name = <NodeName>
+glide.db.pooler.connections = 32
+glide.db.pooler.connections.max = 32
+glide.monitor.url = localhost
+glide.self.monitor.fast_stats = false
+glide.self.monitor.checkin.interval = 86400000
+glide.self.monitor.server_stats.interval = 86400000
+glide.self.monitor.fast_server_stats.interval = 86400000
+glide.installation.self_hosted=true
+glide.usageanalytics.central_instance=https://disabled.service-now.com
+glide.ua.downloader.central_instance=
+```
