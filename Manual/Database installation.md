@@ -74,7 +74,7 @@ cp ServiceNow_mariadb10.4_my.cnf-20220429-512GB.tar.gz /etc/my.cnf
 ~~~sh
 cd /glide
 tar -zxvpf mariadb-10.4.29-linux-systemd-x86_64.tar.gz
-ln -s mariadb-10.4.29-linux-systemd-x86_64.tar.gz mysql
+ln -s mariadb-10.4.29-linux-systemd-x86_64 mysql
 cd mysql
 mkdir temp
 chown -HR mysql:mysql /glide/mysql
