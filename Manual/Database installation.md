@@ -26,8 +26,7 @@ sudo lvcreate -L <Size-of-LV> -n snow_lv   snow_vg
 sudo mkfs.xfs /dev/snow_vg/snow_lv
 sudo mkdir /glide
 sudo mount /dev/snow_vg/snow_lv /glide
-
-df -Th /glide
+echo "/dev/snow_vg/snow_lv /glide xfs defaults 0 0" | tee -a /etc/fstab
 ```
 
 ### Step 2. OS Settings ###
