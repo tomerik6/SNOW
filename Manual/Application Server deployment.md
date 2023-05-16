@@ -84,7 +84,8 @@ WantedBy=multi-user.target
 systemctl daemon-reload
 systemctl enable snc_<nodename>.service
 ```
-**Reboot the server and ensure the service starts up**.
+**Reboot the server and ensure the service starts up**
+
 
 >Note: This step onwards requires a database deployment, see [Database Deployment](Database installation.md)
 7. Configure database connection and properties:
