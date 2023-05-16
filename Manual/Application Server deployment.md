@@ -88,7 +88,7 @@ systemctl enable snc_<nodename>.service
 
 >Note: This step onwards requires a database deployment, see [Database Deployment](Database installation.md)
 7. Configure database connection and properties:
- ```sh vi /glide/nodes/<NodeName>_<NodePort>/conf/glide.db.properties ```
+ ```vi /glide/nodes/<NodeName>_<NodePort>/conf/glide.db.properties ```
  > For MariaDB Deployments
  ```
 glide.db.name = <DatabaseName>
@@ -107,7 +107,7 @@ glide.db.password = <password>
 glide.db.truncate_utf8 = true
 ```
 8.Configure other settings
-```sh vi /glide/nodes/<Nodename>/conf/glide.properties```
+```vi /glide/nodes/<Nodename>/conf/glide.properties```
 ```
 glide.proxy.host = https://example.service-now.com (should be set to your URL)
 glide.proxy.path = /
@@ -124,3 +124,18 @@ glide.installation.self_hosted=true
 glide.usageanalytics.central_instance=https://disabled.service-now.com
 glide.ua.downloader.central_instance=
 ```
+9. Restart the snow service for all of these changes to take effect:
+```sh
+systemctl restart snc_<node>.service
+```
+10. Run the tlog.sh script, a small wrapper script that tails the current log, to verify that the database was created
+and the schema and data are being populated correctly. This process can take up to a couple hours depending
+on your hardware deployed.
+```sh
+/glide/nodes/<node>/tlog.sh
+```
+Once messages in the log file similar to: "worker.0" or "worker.1" are observed the ServiceNow now
+zboot process should be complete. Use a web browser to connect directly to the application server with a URL
+similar to the following ```http://<application server>:16000```
+
+After everything is up and working, see [Post Deployment]
