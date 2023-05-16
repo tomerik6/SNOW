@@ -51,7 +51,7 @@ useradd servicenow
 tar zxf jdk-<ver>.tar.gz -C /glide
 ln -s /glide/jdk-<ver> /glide/java
 export PATH=$PATH:/glide/java/bin
-~~~
+```
 4. Extract the orbit package using java
 > Note that 'node name' should be something similiar to prod1 or dev1
 ```sh
@@ -84,7 +84,7 @@ WantedBy=multi-user.target
 systemctl daemon-reload
 systemctl enable snc_<nodename>.service
 ```
-Reboot the server and ensure the service starts up.
+*Reboot the server and ensure the service starts up.
 
 7.
 
