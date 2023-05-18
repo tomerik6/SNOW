@@ -58,6 +58,7 @@ sudo yum -y install perl
 echo "* soft nproc 10240" | sudo tee -a /etc/security/limits.conf
 echo "vm.swappiness=1" | sudo tee -a /etc/sysctl.conf
 ```
+**Reboot the system**
 
 ### Step 3. Deploy the database (MariaDB) ###
 1. Extract the base file
