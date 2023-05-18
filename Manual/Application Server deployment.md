@@ -24,9 +24,7 @@ sudo timedatectl set-timezone UTC
 ```
 3. Install the following RPM packages:
 ```sh
-sudo yum install libgcc libgcc.i686
-sudo yum install glibc glibc.i686
-sudo yum install rng-tools
+sudo yum install -y libgcc libgcc.i686 glibc glibc.i686 rng-tools
 ```
 5. Kernel settings 
 ```sh
