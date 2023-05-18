@@ -28,9 +28,12 @@ sudo yum install -y libgcc libgcc.i686 glibc glibc.i686 rng-tools
 ```
 5. Kernel settings 
 ```sh
+rm -rf /etc/security/limits.d/*
+
 echo "* soft nproc 10240" | sudo tee -a /etc/security/limits.conf
 echo "* soft nofile 16000" | sudo tee -a /etc/security/limits.conf
 echo "* hard nofile 16000" | sudo tee -a /etc/security/limits.conf
+echo "root       soft    nproc     unlimited" >> /etc/security/limits.conf
 echo "vm.swappiness=1" | sudo tee -a /etc/sysctl.conf
 ```
 
