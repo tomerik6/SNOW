@@ -43,7 +43,11 @@ systemctl disable firewalld
 sudo timedatectl set-timezone UTC
 ```
 3. Disable THP 
-4. Install the following RPM packages:
+```sh
+sudo sed -i '/^GRUB_CMDLINE_LINUX/s/"$/ transparent_hugepage=never"/' /etc/default/grub
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+```
+5. Install the following RPM packages:
 ```sh
 sudo yum -y install libaio
 sudo yum -y install glibc
