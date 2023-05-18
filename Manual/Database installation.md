@@ -73,7 +73,7 @@ useradd mysql -g mysql
 3.Extract the custom cnf file (Edit the content of innodb_buffer_pool and innodb_log_size to 70% of your servers memory)
 ~~~sh
 tar zxvf ServiceNow_mariadb10.4_my.cnf-20220429-512GB.tar.gz -C .
-cp ServiceNow_mariadb10.4_my.cnf-20220429-512GB.tar.gz /etc/my.cnf
+cp ServiceNow_mariadb10.4_my.cnf-20220429-512GB /etc/my.cnf
 ~~~
 4. Deploy the DB
 ~~~sh
