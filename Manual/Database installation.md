@@ -108,3 +108,10 @@ mysql > GRANT ALL PRIVILEGES ON *.* TO <username>@'<source app IP>' IDENTIFIED B
 mysql> flush privileges;
 ~~~
 
+Finally, it is recommended to run the ```mysql_secure_installation``` script and follow it to secure the fresh installation:
+```sh
+ sudo /glide/mysql/bin/mysql_secure_installation --basedir=/glide/mysql
+ ```
+ 
+ That's it! Congrats :)
+
