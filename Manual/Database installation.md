@@ -91,9 +91,26 @@ ln -s /etc/init.d/mysql /etc/rc3.d/S99mysql
 ln -s /etc/init.d/mysql /etc/rc3.d/K01mysql
 ~~~
 
-5. Start the service, make sure its running and then enable it for system startup
+5. Create a systemd service unit file ```vi /etc/systemd/system/mysql.service```
+```sh
+[Unit]
+Description=MariaDB service
+After=syslog.target
+[Service]
+Type=forking
+ExecStart=/etc/init.d/mysql start
+ExecStop=/etc/init.d/mysql stop
+User=mysql
+Group=mysql
+UMask=0007
+LimitNOFILE=16000
+[Install]
+WantedBy=multi-user.target
+```
+7 start the service, make sure its running and then enable it for system startup
 ~~~sh
-sudo /etc/init.d/mysql start
+sudo systemctl daemon-reload
+sudo systemctl start mysql
 sudo systemctl status mysql
 ^status^enable
 ~~~
